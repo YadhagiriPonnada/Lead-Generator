@@ -1,8 +1,9 @@
-const Lead = require('../models/Lead');
 const axios = require('axios');
 
 exports.createLead = async (req, res) => {
   try {
+    console.log('Received request body:', req.body);
+    
     // Extract lead data from request body
     const leadData = {
       name: req.body.name,
@@ -11,14 +12,13 @@ exports.createLead = async (req, res) => {
       message: req.body.message || ''
     };
 
-    // 1. First save to MongoDB
-    const lead = new Lead(leadData);
-    await lead.save();
-    console.log('Lead saved to MongoDB:', lead._id);
+    console.log('Processed lead data:', leadData);
 
-    // 2. Then forward to n8n webhook
-    const webhookUrl = 'https://yadhagiri.app.n8n.cloud/webhook-test/leads';
+    // Forward to n8n webhook
+    const webhookUrl = 'https://yadhagiri.app.n8n.cloud/webhook/leads';
     try {
+      console.log('Attempting to forward to n8n webhook:', webhookUrl);
+      
       // Make POST request to n8n webhook
       const webhookResponse = await axios.post(webhookUrl, leadData, {
         headers: {
@@ -28,25 +28,27 @@ exports.createLead = async (req, res) => {
       });
       
       console.log('Successfully forwarded lead to n8n:', {
-        leadId: lead._id,
         webhookStatus: webhookResponse.status,
-        webhookStatusText: webhookResponse.statusText
+        webhookStatusText: webhookResponse.statusText,
+        responseData: webhookResponse.data
+      });
+
+      // Return success response
+      res.status(200).json({
+        success: true,
+        message: 'Lead data successfully forwarded to n8n'
       });
     } catch (webhookError) {
-      // Log webhook error but don't fail the request
       console.error('Error forwarding to n8n webhook:', {
         error: webhookError.message,
-        leadId: lead._id,
-        webhookUrl
+        webhookUrl,
+        errorDetails: webhookError.response ? webhookError.response.data : null
+      });
+      res.status(500).json({
+        success: false,
+        error: 'Failed to forward lead data to n8n'
       });
     }
-
-    // 3. Return success response
-    res.status(201).json({
-      success: true,
-      data: lead,
-      message: 'Lead created successfully'
-    });
   } catch (error) {
     console.error('Error processing lead:', error);
     res.status(500).json({

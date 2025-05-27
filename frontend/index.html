@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Generation System with Email Notifications & n8n Workflow Automation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <form id="leadForm" class="lead-form">
+            <img src="https://res.cloudinary.com/dveyxa6i5/image/upload/v1739357981/my_pic_vma2nv.jpg" alt="Profile Picture" class="profile-img" />
+            <h1>Lead Generation System with Email Notifications & n8n Workflow Automation</h1>
+            
+            <div class="form-group">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <span class="error-message" id="nameError"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <span class="error-message" id="emailError"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="company" name="company" placeholder="Your Company" required>
+            </div>
+
+            <div class="form-group">
+                <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Send Message</span>
+                    <div class="loader" id="submitLoader"></div>
+                </button>
+            </div>
+
+            <div id="formMessage" class="form-message"></div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
