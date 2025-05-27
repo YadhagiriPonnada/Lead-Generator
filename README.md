@@ -1,21 +1,53 @@
-📬 Lead Generation System
+# 📬 Lead Generation System
+
+
 A full-stack lead generation system that collects user data from a frontend form, saves it to a MongoDB database, and forwards the data to an n8n webhook for automated email notifications.
 
-##🔗 Live Demo Published Link: leadgeneration.ccbp.tech
+---
+##🔗 Live Demo
+Published Link: leadgeneration.ccbp.tech
 
-🔧 Tech Stack
-Frontend: HTML, CSS, JavaScript
-Backend: Node.js, Express.js
-Database: MongoDB (local or Atlas)
-Automation: n8n (Workflow automation tool)
-Deployment: Render (Backend)
-📁 Folder Structure
-Lead-Generator/ │ ├── src/ │ ├── controllers/ │ │ └── leadController.js # Handles lead creation logic │ ├── models/ │ │ └── Lead.js # MongoDB schema │ ├── routes/ │ │ └── leadRoutes.js # API routes │ └── server.js # Express server │ ├── public/ │ └── index.html # Frontend form │ ├── .env # Environment variables ├── package.json └── README.md # Project documentation
+## 🔧 Tech Stack
 
-yaml Copy Edit
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB (local or Atlas)
+- **Automation:** n8n (Workflow automation tool)
+- **Deployment:** Render (Backend)
 
-🚀 Getting Started
-1. Clone the repository
+---
+
+## 📁 Folder Structure
+
+Lead-Generator/
+│
+├── src/
+│ ├── controllers/
+│ │ └── leadController.js # Handles lead creation logic
+│ ├── models/
+│ │ └── Lead.js # MongoDB schema
+│ ├── routes/
+│ │ └── leadRoutes.js # API routes
+│ └── server.js # Express server
+│
+├── public/
+│ └── index.html # Frontend form
+│
+├── .env # Environment variables
+├── package.json
+└── README.md # Project documentation
+
+yaml
+Copy
+Edit
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/YadhagiriPonnada/Lead-Generator-To-Mail.git
 cd Lead-Generator-To-Mail
 2. Install dependencies
